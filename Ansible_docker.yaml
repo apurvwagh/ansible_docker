@@ -1,6 +1,21 @@
-- hosts: "web"
-  become: yes
-  become_user: root
+# Ansbile inventory file
+
+[defaults]
+inventory = /mydb
+private_key_file= /root/Appu9455.pem
+host_key_checking= false
+remote_user= ec2-user
+
+[privilege_escalation]
+
+become = true
+become_method = sudo
+become_user = root
+become_ask_pass = false
+
+==========================================================================
+#Ansible playbook
+- hosts: ["tag_Name_node_1", "tag_Name_node_2", "tag_Name_node_3", ]  
   tasks:
   - name: "Repository"
     yum_repository:
